@@ -1,0 +1,37 @@
+<template>
+    <article class="slds-card slds-card_boundary">
+        <!-- SELECTED PRODUCT HEADER -->
+        <div class="slds-grid slds-page-header">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-media__figure">
+                    <lightning-icon icon-name="standard:product" size="small"></lightning-icon>
+                </div>
+                <div class="slds-media__body">
+                    <h2 class="slds-card__header-link">
+                        <span class="slds-card__header-title slds-truncate slds-m-right--xx-small" title="Product">
+                            Product: {productName}
+                        </span>
+                    </h2>
+                </div>
+            </header>
+        </div>
+        <!-- END SELECTED PRODUCT HEADER -->
+        <!-- SELECTED PRODUCT INFO-->
+        <div style="min-height: 450px; background-color: white;">
+            <h1 style ="font-size: 18px;" class="slds-card__header-link slds-text-align_center">
+                {productDescription}
+            </h1>
+            <div class="slds-m-around_medium slds-align_absolute-center">
+                <img style="max-height: 400px; max-width: 400px;" src={productImage}>
+            </div>  
+        </div>
+        <!-- END OF SELECTED PRODUCT INFO-->
+        <!-- FOOTER-->
+        <footer class="slds-modal__footer">
+            <h2 style ="font-size: 11px;" class="slds-text-align_center">
+                Select a product to see its description and image
+            </h2>
+        </footer>
+        <!-- END OF FOOTER-->
+    </article>
+</template>

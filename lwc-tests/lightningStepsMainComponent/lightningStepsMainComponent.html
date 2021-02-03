@@ -1,0 +1,67 @@
+<template>
+    <article>
+        <!-- COMPONENTS -->
+        <div class="slds-grid slds-gutters">
+            <div style="max-width: 60%;" class="slds-col">
+                <!-- PRODUCT LIST LWC -->
+                <c-lightning-steps-product-list onprodselect={productSelection} onopenadd={openAdditionToCart} oncartadd={onCartAddition}></c-lightning-steps-product-list>
+                <!-- END OF PRODUCT LIST LWC -->
+                <!-- SHOPPING CART LWC -->
+                <c-lightning-steps-shopping-cart onprodreload={onProductReload} oncartremov={onCartRemoval}></c-lightning-steps-shopping-cart>
+                <!-- END OF SHOPPING CART LWC -->
+            </div>
+            <div style="max-width: 40%;" class="slds-col"> 
+                <!-- PRODUCT PREVIEW LWC -->
+                <c-lightning-steps-product-preview></c-lightning-steps-product-preview>
+                <!-- END OF PRODUCT PREVIEW LWC -->
+            </div>
+        </div>
+        <!-- END OF COMPONENTS-->
+        <!-- MODALS -->
+        <!-- ADD PRODUCT TO CART MODAL -->
+        <template if:true={showAdditionToCart}>
+            <div style="height: 150px;">
+                <section class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeAdditionToCart}>
+                                <lightning-icon icon-name="utility:close" size="medium"></lightning-icon>
+                            </button>
+                            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                                <div class="slds-media__figure">
+                                    <lightning-icon icon-name="standard:case" size="small"></lightning-icon>
+                                </div>
+                                <div class="slds-media__body">
+                                    <h2 class="slds-card__header-link">
+                                        <span class="slds-card__header-title slds-truncate slds-m-right--xx-small" title="Accounts">
+                                            Adding to cart
+                                        </span>
+                                    </h2>
+                                </div>
+                            </header>
+                        </header>
+                        <div style="background-color: white; min-height: 80px;">
+                            <lightning-input 
+                                class="slds-p-horizontal_small slds-p-top_x-small" 
+                                type="number" 
+                                onchange={handleQuantityChange} 
+                                value={neededQuantity} 
+                                label="Enter the quantity">
+                            </lightning-input>
+                        </div>
+                        <footer class="slds-modal__footer">
+                            <lightning-button label="Cancel" variant="neutral" onclick={closeAdditionToCart}></lightning-button>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <lightning-button label="Add To Cart" variant="brand" onclick={addProductToCart}></lightning-button>
+                        </footer>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </div>
+        </template>
+        <!-- END OF ADD PRODUCT TO CART MODAL -->
+        <!-- END OF MODALS -->
+        <template if:true={error}>
+            An error occured. Contact your administrator
+        </template>
+    </article>
+</template>

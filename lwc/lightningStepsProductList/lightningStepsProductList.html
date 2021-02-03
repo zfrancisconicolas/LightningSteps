@@ -1,0 +1,58 @@
+<template>
+    <article class="slds-card slds-card_boundary">
+        <!-- PRODUCTS DATATABLE HEADER -->
+        <div class="slds-grid slds-page-header">
+             <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                 <div class="slds-col slds-float_left slds-p-top_small">
+                    <div class="slds-media__body" style="display : inline-flex;">
+                        <div class="slds-media__figure">
+                            <lightning-icon icon-name="standard:product" size="small"></lightning-icon>
+                        </div>
+                        <h2 class="slds-card__header-link">
+                            <span class="slds-card__header-title slds-truncate slds-p-top_xxx-small slds-m-right--xx-small" title="Products">
+                                Products ({products.length})
+                            </span>
+                        </h2>
+                    </div>
+                </div> 
+                <div class="slds-col slds-float_right" style="max-width: 30%; display: inline-flex;">
+                    <lightning-combobox
+                                class="slds-p-horizontal_small"
+                                name="Filter"
+                                label="Filter By"
+                                placeholder="Enter a field"
+                                value={filter}
+                                onchange={changeFilter}
+                                options={filterOptions}
+                                style="max-width: 220px;">
+                </lightning-combobox>   
+                    <lightning-input 
+                        label="Search"
+                        onchange={handleFilter}>
+                    </lightning-input>
+                </div>
+            </header> 
+        </div>
+        <!-- END OF PRODUCTS DATATABLE HEADER -->
+        <!-- DATATABLE WITH THE PRODUCTS IN STOCK -->
+        <template if:false={error}>
+            <div id="productList" class="slds-grid" style="height:400px; overflow:auto !important;">
+                <lightning-datatable 
+                    class="slds-scrollable--y" 
+                    style="overflow-y: auto; min-width:100%;" 
+                    columns={columns} 
+                    key-field="productId" 
+                    data={products}
+                    default-sort-direction={defaultSortDirection} 
+                    sorted-direction={sortDirection} 
+                    sorted-by={sortedBy} 
+                    onsort={handleSort} 
+                    onrowaction={handleRowAction}
+                    onrowselection={handleSelection}
+                    max-row-selection="1">
+                </lightning-datatable>
+            </div>
+        </template>
+        <!-- END OF DATATABLE WITH THE PRODUCTS IN STOCK -->
+    </article>
+</template>
