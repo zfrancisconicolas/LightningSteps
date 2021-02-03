@@ -69,6 +69,11 @@ public class LightningSteps_ShoppingCartCtrlTest {
         insert pbEntries;
     }
 
+
+    /*
+     *  createOrdersTest
+     *  Tests a successful order and order item creation and product update
+    */
     @isTest
     static void createOrdersTest(){
         Account selectedAccount = [SELECT Id FROM Account LIMIT 1];
@@ -113,6 +118,10 @@ public class LightningSteps_ShoppingCartCtrlTest {
         System.assertEquals(0, errorLogs.size(), 'We should have no errors.');
     }
 
+    /*
+     *  createOrders_withErrorsTest
+     *  Tests an unsuccessful transaction, savepoint rollback and error log creation
+    */
     @isTest
     static void createOrders_withErrorsTest(){
         Account selectedAccount = [SELECT Id FROM Account LIMIT 1];
@@ -159,6 +168,11 @@ public class LightningSteps_ShoppingCartCtrlTest {
         System.assertEquals(true, errorLogs[0].Error_Message__c.contains('Pricebook'), 'The error should be related to the missing pricebook id.');
     }
 
+    
+    /*
+     *  createOrderItems_withErrorsTest
+     *  Tests an unsuccessful transaction, savepoint rollback and error log creation
+    */
     @isTest
     static void createOrderItems_withErrorsTest(){
         Account selectedAccount = [SELECT Id FROM Account LIMIT 1];
@@ -204,7 +218,11 @@ public class LightningSteps_ShoppingCartCtrlTest {
         System.assertEquals(2, errorLogs.size(), 'We should have an error.');
         System.assertEquals(true, errorLogs[0].Error_Message__c.contains('PricebookEntry'), 'The error should be related to the missing pricebook entry.');
     }
-
+    
+    /*
+     *  retrieveAccountsTest
+     *  Tests account retrieval
+    */
     @isTest
     static void retrieveAccountsTest(){
         List<Account> allAccounts = LightningSteps_ShoppingCartController.retrieveAccounts();

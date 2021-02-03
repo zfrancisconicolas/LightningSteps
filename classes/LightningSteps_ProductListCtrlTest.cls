@@ -50,6 +50,11 @@ public class LightningSteps_ProductListCtrlTest {
         insert products;
     }
 
+    
+    /*
+     *  getProductEntriesTest
+     *  Tests the results when we have products.
+    */
     @isTest
     static void getProductEntriesTest(){
         Id pricebookId = Test.getStandardPricebookId();
@@ -82,6 +87,10 @@ public class LightningSteps_ProductListCtrlTest {
         System.assertEquals(2, productEntries.size(), 'We should have two product entries.');
     }
 
+    /*
+     *  getProductEntries_withoutProductsTest
+     *  Tests the results when there are no products.
+    */
     @isTest
     static void getProductEntries_withoutProductsTest(){
         Id pricebookId = Test.getStandardPricebookId();
@@ -92,7 +101,6 @@ public class LightningSteps_ProductListCtrlTest {
         update standardPricebook;
         
         List<ProductEntry> productEntries = LightningSteps_ProductListController.getProductEntries();
-
         System.assertEquals(null, productEntries, 'The list should be null');
     }
 }
