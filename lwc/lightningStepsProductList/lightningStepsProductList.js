@@ -24,7 +24,7 @@ export default class lightningStepsProductList extends LightningElement {
             this.error = undefined;
         } 
         else if (error || data == null) {
-            this.error = 'There are no products or pricebook.';
+            this.error = "There are no products to display.";
         }
     }
 

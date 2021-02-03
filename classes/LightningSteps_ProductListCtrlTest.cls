@@ -48,26 +48,6 @@ public class LightningSteps_ProductListCtrlTest {
         products.add(blals001);
 
         insert products;
-
-        PricebookEntry blals001Entry = new PricebookEntry(
-            Pricebook2Id = pricebookId,
-            Product2Id = blals001.Id,
-            UnitPrice = 110, 
-            IsActive = true
-        );
-
-        PricebookEntry whivs002Entry = new PricebookEntry(
-            Pricebook2Id = pricebookId,
-            Product2Id = whivs002.Id,
-            UnitPrice = 200, 
-            IsActive = true
-        );
-
-        pbEntries.add(whivs002Entry);
-        pbEntries.add(blals001Entry);
-
-        insert pbEntries;
-
     }
 
     @isTest
@@ -79,9 +59,40 @@ public class LightningSteps_ProductListCtrlTest {
         );
         update standardPricebook;
         
-        List<ProductEntry> productEntries = LightningSteps_ProductListController.getProductEntries();
+        List<Product2> products = [
+            SELECT Id
+            FROM Product2
+        ];
 
+        List<PriceBookEntry> pbEntries = new List<PriceBookEntry>();
+        if(!products.isEmpty()){
+            for(Product2 prod : products){
+                pbEntries.add(new PriceBookEntry(
+                    Pricebook2Id = pricebookId,
+                    Product2Id = prod.Id,
+                    UnitPrice = 110, 
+                    IsActive = true
+                ));
+            }
+        }
+
+        insert pbEntries;
+
+        List<ProductEntry> productEntries = LightningSteps_ProductListController.getProductEntries();
         System.assertEquals(2, productEntries.size(), 'We should have two product entries.');
     }
 
+    @isTest
+    static void getProductEntries_withoutProductsTest(){
+        Id pricebookId = Test.getStandardPricebookId();
+        Pricebook2 standardPricebook = new Pricebook2(
+            Id = Test.getStandardPricebookId(),
+            IsActive = true
+        );
+        update standardPricebook;
+        
+        List<ProductEntry> productEntries = LightningSteps_ProductListController.getProductEntries();
+
+        System.assertEquals(null, productEntries, 'The list should be null');
+    }
 }

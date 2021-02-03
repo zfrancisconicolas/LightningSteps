@@ -35,4 +35,19 @@ describe('product list component test', () => {
            expect(table.data[0].productCode).toBe(mockProducts[0].productCode);
         });
     });
+
+    /*
+     * no products
+     * Simple test to verify the error message
+    */
+    it("no products", () => {
+        const element = createElement("c-lightning-steps-product-list", { is: LightningStepsProductList });
+        document.body.appendChild(element);
+        getRecordWireAdapter.emit(null);
+
+        return Promise.resolve().then(() => {
+           const h1 = element.shadowRoot.querySelectorAll("h1");
+           expect(h1[0].textContent).toBe("There are no products to display.");
+        });
+    });
 });

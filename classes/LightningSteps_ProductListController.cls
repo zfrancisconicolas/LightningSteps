@@ -6,7 +6,6 @@ public with sharing class LightningSteps_ProductListController {
     */
     @AuraEnabled(cacheable=true)
     public static List<ProductEntry> getProductEntries() {
-        List<ProductEntry> productEntries = new List<ProductEntry>();
         List<PriceBookEntry> pbEntries = new List<PriceBookEntry>();
         
         Pricebook2 pb2 = [
@@ -28,9 +27,8 @@ public with sharing class LightningSteps_ProductListController {
             ];
 
             if(!pbEntries.isEmpty()){
-                productEntries = parseEntries(pbEntries);
+                return parseEntries(pbEntries);
             }
-            return productEntries;
         }
         return null;
     }
