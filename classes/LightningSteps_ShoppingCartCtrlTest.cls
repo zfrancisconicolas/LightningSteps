@@ -69,7 +69,6 @@ public class LightningSteps_ShoppingCartCtrlTest {
         insert pbEntries;
     }
 
-
     /*
      *  createOrdersTest
      *  Tests a successful order and order item creation and product update
@@ -167,7 +166,6 @@ public class LightningSteps_ShoppingCartCtrlTest {
         System.assertEquals(1, errorLogs.size(), 'We should have an error.');
         System.assertEquals(true, errorLogs[0].Error_Message__c.contains('Pricebook'), 'The error should be related to the missing pricebook id.');
     }
-
     
     /*
      *  createOrderItems_withErrorsTest
