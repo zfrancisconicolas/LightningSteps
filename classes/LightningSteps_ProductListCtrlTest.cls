@@ -50,7 +50,6 @@ public class LightningSteps_ProductListCtrlTest {
         insert products;
     }
 
-    
     /*
      *  getProductEntriesTest
      *  Tests the results when we have products.
