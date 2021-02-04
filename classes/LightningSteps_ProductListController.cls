@@ -6,6 +6,7 @@ public with sharing class LightningSteps_ProductListController {
     */
     @AuraEnabled(cacheable=true)
     public static List<ProductEntry> getProductEntries() {
+        List<ProductEntry> productEntries = new List<ProductEntry>();
         List<PriceBookEntry> pbEntries = new List<PriceBookEntry>();
         
         Pricebook2 pb2 = [
@@ -27,41 +28,10 @@ public with sharing class LightningSteps_ProductListController {
             ];
 
             if(!pbEntries.isEmpty()){
-                return parseEntries(pbEntries);
+                productEntries = ProductEntry.parseEntries(pbEntries);
             }
+            return productEntries;
         }
         return null;
-    }
-
-    /*
-     * parseEntries
-     * params: List PricebookEntry pbEntries
-     * returns: List ProductEntry
-     * code to parse PricebookEntry into ProductEntry
-    */
-    @TestVisible
-    private static List<ProductEntry> parseEntries(List<PriceBookEntry> pbEntries){
-        List<ProductEntry> returnEntries = new List<ProductEntry>();
-        ProductEntry prodEntry;
-        for(PriceBookEntry pbEntry : pbEntries){
-            prodEntry = new ProductEntry();
-            prodEntry.priceBookId = pbEntry.Pricebook2Id;
-            prodEntry.productId = pbEntry.Product2Id;
-            prodEntry.unitPrice = pbEntry.UnitPrice;
-            prodEntry.productName = pbEntry.Product2.Name;
-            prodEntry.productDescription = pbEntry.Product2.Description;
-            prodEntry.productCategory = pbEntry.Product2.Category__c;
-            prodEntry.productStyle = pbEntry.Product2.Style__c;
-            prodEntry.productColor = pbEntry.Product2.Color__c;
-            prodEntry.productStock = pbEntry.Product2.Current_Stock__c;
-            prodEntry.productInStock = pbEntry.Product2.In_Stock__c;
-            prodEntry.productCode = pbEntry.Product2.ProductCode;
-            prodEntry.pbEntryId = pbEntry.Id;
-            if(pbEntry.Product2.Size__c > 0) {
-                prodEntry.productSize = pbEntry.Product2.Size__c;
-            }
-            returnEntries.add(prodEntry);
-        }
-        return returnEntries;
     }
 }

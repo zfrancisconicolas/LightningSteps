@@ -54,5 +54,12 @@
             </div>
         </template>
         <!-- END OF DATATABLE WITH THE PRODUCTS IN STOCK -->
+        <!-- ERROR MESSAGE -->
+        <template if:true={error}>
+            <div class="slds-grid slds-align_absolute-center" style="height:50px; color: red; font-size: 14px;">
+                <h1>{error}</h1>
+            </div>
+        </template>
+        <!-- END OF ERROR MESSAGE -->
     </article>
 </template>

@@ -87,7 +87,7 @@ public class LightningSteps_ShoppingCartCtrlTest {
             AND Product2.In_Stock__c = true
         ];
 
-        List<ProductEntry> productEntries = LightningSteps_ProductListController.parseEntries(pbEntries);
+        List<ProductEntry> productEntries = ProductEntry.parseEntries(pbEntries);
 
         //SETTING THE QUANTITY SOLD
         for(ProductEntry prodEntry : productEntries){
@@ -135,7 +135,7 @@ public class LightningSteps_ShoppingCartCtrlTest {
             AND Product2.In_Stock__c = true
         ];
 
-        List<ProductEntry> productEntries = LightningSteps_ProductListController.parseEntries(pbEntries);
+        List<ProductEntry> productEntries = ProductEntry.parseEntries(pbEntries);
 
         //SETTING THE QUANTITY SOLD
         for(ProductEntry prodEntry : productEntries){
@@ -186,7 +186,7 @@ public class LightningSteps_ShoppingCartCtrlTest {
             AND Product2.In_Stock__c = true
         ];
 
-        List<ProductEntry> productEntries = LightningSteps_ProductListController.parseEntries(pbEntries);
+        List<ProductEntry> productEntries = ProductEntry.parseEntries(pbEntries);
 
         //SETTING THE QUANTITY SOLD
         for(ProductEntry prodEntry : productEntries){

@@ -23,8 +23,8 @@ export default class lightningStepsProductList extends LightningElement {
             this.originalProducts = this.products;
             this.error = undefined;
         } 
-        else if (error) {
-            this.error = error;
+        else if (error || data == null) {
+            this.error = "There are no products to display.";
         }
     }
 
@@ -144,7 +144,6 @@ export default class lightningStepsProductList extends LightningElement {
         }
     }
 
-    //Show Toast event for messages
     showToast(_title, _message, _variant) {
         this.dispatchEvent(new ShowToastEvent({
             title: _title,
