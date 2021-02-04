@@ -144,6 +144,7 @@ export default class lightningStepsProductList extends LightningElement {
         }
     }
 
+    //Show Toast event for messages
     showToast(_title, _message, _variant) {
         this.dispatchEvent(new ShowToastEvent({
             title: _title,
