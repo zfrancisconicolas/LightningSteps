@@ -29,8 +29,8 @@ public with sharing class LightningSteps_ProductListController {
 
             if(!pbEntries.isEmpty()){
                 productEntries = ProductEntry.parseEntries(pbEntries);
+                return productEntries;
             }
-            return productEntries;
         }
         return null;
     }
